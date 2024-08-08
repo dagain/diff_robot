@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Argumento para usar el tiempo de simulación -->
+    <arg name="use_sim_time" default="false" />
+
+    <!-- Configuración del parámetro del robot_description -->
+    <!--<param name="robot_description" textfile="$(find diff_robot)/description/robot.urdf" /> -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find diff_robot)/description/robot.urdf.xacro'" />
+
+    <!-- Nodo robot_state_publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+        <!-- Parametrización del nodo -->
+        <param name="use_sim_time" value="$(arg use_sim_time)" />
+    </node>
+</launch>
